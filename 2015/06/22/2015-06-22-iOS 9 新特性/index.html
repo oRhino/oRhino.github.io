@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Objective-C," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="属性1.宏NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull 例子:12345678NS_ASSUME_NONNULL_BEGIN@interface Property : NSObject@property (nonatomic, copy) NSString *name;@property (nonatomic, as">
+<meta name="keywords" content="Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 9 新特性">
+<meta property="og:url" content="http://yoursite.com/2015/06/22/2015-06-22-iOS 9 新特性/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="属性1.宏NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull 例子:12345678NS_ASSUME_NONNULL_BEGIN@interface Property : NSObject@property (nonatomic, copy) NSString *name;@property (nonatomic, as">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/1.png?raw=true">
+<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/2.png?raw=true">
+<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/3.jpg?raw=true">
+<meta property="og:updated_time" content="2017-10-07T17:27:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 9 新特性">
+<meta name="twitter:description" content="属性1.宏NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull 例子:12345678NS_ASSUME_NONNULL_BEGIN@interface Property : NSObject@property (nonatomic, copy) NSString *name;@property (nonatomic, as">
+<meta name="twitter:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/1.png?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/06/22/2015-06-22-iOS 9 新特性/"/>
+
+
+
+
+
+  <title>iOS 9 新特性 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/22/2015-06-22-iOS 9 新特性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS 9 新特性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-06-22T00:00:00+08:00">
+                2015-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="1-宏"><a href="#1-宏" class="headerlink" title="1.宏"></a>1.宏</h3><p>NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull</p>
+<p>例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">NS_ASSUME_NONNULL_BEGIN</span><br><span class="line">@interface Property : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@property (nonatomic, assign) NSUInteger age;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line">NS_ASSUME_NONNULL_END</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-属性修饰符"><a href="#2-属性修饰符" class="headerlink" title="2.属性修饰符"></a>2.属性修饰符</h3><h4 id="2-1-nonnull-nonnull"><a href="#2-1-nonnull-nonnull" class="headerlink" title="2.1 nonnull \ __nonnull"></a>2.1 nonnull \ __nonnull</h4><p>nonnull \ __nonnull : setter 和 getter 都不能为nil</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, strong, nonnull) NSArray *names;</span><br><span class="line">@property (nonatomic, strong) NSArray * __nonnull name;</span><br></pre></td></tr></table></figure>
+<p>但是仅仅是一个警告,而且仅限于直接赋值为nil的时候.<br><img src="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/1.png?raw=true" alt="1" title="1"></p>
+<p>没有警告<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Property *p = [[Property alloc]init];</span><br><span class="line">NSString *nilString = nil;</span><br><span class="line">p.name = nilString;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-2-nullable-nullable"><a href="#2-2-nullable-nullable" class="headerlink" title="2.2 nullable \ __nullable"></a>2.2 nullable \ __nullable</h4><p>nullable \ __nullable : setter 和 getter 都可以为nil<br>默认情况下, 不加nullable, setter 和 getter 都是可以为nil<br>nullable更多的作用在于程序员之间的沟通交流(提醒同事某个属性可能是nil)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, strong, nullable) NSArray *names;</span><br><span class="line">@property (nonatomic, strong) NSArray * __nullable names;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-3-null-resettable"><a href="#2-3-null-resettable" class="headerlink" title="2.3  null_resettable"></a>2.3  null_resettable</h4><p>null_resettable : setter可以为nil, getter不可以为nil<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property (null_resettable, nonatomic, strong) NSArray *names;</span><br></pre></td></tr></table></figure></p>
+<p>注意:以上均是针对指针类型的属性<br>错误写法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, assign, nullable) int age;</span><br><span class="line">//Nullability specifier &apos;nullable&apos; cannot be applied to non-pointer type &apos;int&apos;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-泛型"><a href="#3-泛型" class="headerlink" title="3. 泛型"></a>3. 泛型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, strong) NSMutableArray&lt;NSString *&gt; *names;</span><br><span class="line">@property (nonatomic, strong) NSMutableDictionary&lt;NSString *, NSNumber *&gt; *books;</span><br></pre></td></tr></table></figure>
+<p>自定义泛型<br>ObjectType(可以自己定义,swift中常用T)是传入类型的 占位符,只能在 @interface 上定义（类声明、类扩展、Category），这个类型在 @interface 和 @end 区间的作用域有效，可以把它作为入参、出参、甚至内部 NSArray 属性的泛型类型，应该说一切都是符合预期的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@interface MYStack&lt;ObjectType&gt; : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign,readonly) NSInteger count;</span><br><span class="line"></span><br><span class="line">- (void)push:(ObjectType)object;</span><br><span class="line"></span><br><span class="line">- (ObjectType)pop;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">//使用</span><br><span class="line">MYStack&lt;NSString *&gt; *stack = [[MYStack alloc]init];</span><br><span class="line">[stack push:@&quot;xxx&quot;];</span><br><span class="line">[stack pop];</span><br></pre></td></tr></table></figure></p>
+<p>我们还可以给 ObjectType 增加类型限制，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@interface MYStack&lt;ObjectType:NSObject&gt; : NSObject</span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-自定义泛型时使用"><a href="#4-自定义泛型时使用" class="headerlink" title="4.自定义泛型时使用"></a>4.自定义泛型时使用</h2><p>协变性和逆变性 <strong>covariant </strong>contravariant<br>例子:NSArray<br>不指定泛型类型的 MYStack 可以和任意泛型类型转化，但指定了泛型类型后，两个不同类型间是不可以强转的，假如你希望主动控制转化关系，就需要使用泛型的协变性和逆变性修饰符了：<br><strong>covariant - 协变性，子类型可以强转到父类型（里氏替换原则）<br><img src="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/2.png?raw=true" alt="2" title="2">
+</strong>contravariant - 逆变性，父类型可以强转到子类型<br><img src="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/3.jpg?raw=true" alt="3" title="3"></p>
+<h2 id="5-kindof"><a href="#5-kindof" class="headerlink" title="5.__kindof"></a>5.__kindof</h2><p>例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (nullable __kindof UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath; </span><br><span class="line">- (nullable __kindof UIView *)viewWithTag:(NSInteger)tag;</span><br></pre></td></tr></table></figure></p>
+<p>意思是返回的类型是UITableViewCell或者它的子类均可,相对于id类型,可以减少我们进行再次强转</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/07/2016-2-07  KVC与KVO/" rel="prev" title="KVC与KVO">
+                KVC与KVO <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-宏"><span class="nav-number">1.1.</span> <span class="nav-text">1.宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-属性修饰符"><span class="nav-number">1.2.</span> <span class="nav-text">2.属性修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-nonnull-nonnull"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 nonnull \ __nonnull</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-nullable-nullable"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 nullable \ __nullable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-null-resettable"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3  null_resettable</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-泛型"><span class="nav-number">2.</span> <span class="nav-text">3. 泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-自定义泛型时使用"><span class="nav-number">3.</span> <span class="nav-text">4.自定义泛型时使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-kindof"><span class="nav-number">4.</span> <span class="nav-text">5.__kindof</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

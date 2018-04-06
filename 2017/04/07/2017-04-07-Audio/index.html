@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="音频初见基本介绍音频: 从形式上分为短音频(音效播放):不需要进度|循环等控制  AudioToolbox.framework(C语言框架   本质:将音频注册到system sound service(简单底层的声音播放服务))特点: 播放时间不超过30s 数据格式PCM/IMA4 音频文件必须打包成.caf,.aif,.wav,(.MP3也可以)  长音频(音乐播放)   较大的音频文件,需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音频初见">
+<meta property="og:url" content="http://yoursite.com/2017/04/07/2017-04-07-Audio/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="音频初见基本介绍音频: 从形式上分为短音频(音效播放):不需要进度|循环等控制  AudioToolbox.framework(C语言框架   本质:将音频注册到system sound service(简单底层的声音播放服务))特点: 播放时间不超过30s 数据格式PCM/IMA4 音频文件必须打包成.caf,.aif,.wav,(.MP3也可以)  长音频(音乐播放)   较大的音频文件,需要">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2017-04-07-Audio/1.png?raw=true">
+<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2017-04-07-Audio/2.png?raw=true">
+<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2017-04-07-Audio/3.jpg?raw=true">
+<meta property="og:updated_time" content="2017-10-07T17:27:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="音频初见">
+<meta name="twitter:description" content="音频初见基本介绍音频: 从形式上分为短音频(音效播放):不需要进度|循环等控制  AudioToolbox.framework(C语言框架   本质:将音频注册到system sound service(简单底层的声音播放服务))特点: 播放时间不超过30s 数据格式PCM/IMA4 音频文件必须打包成.caf,.aif,.wav,(.MP3也可以)  长音频(音乐播放)   较大的音频文件,需要">
+<meta name="twitter:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2017-04-07-Audio/1.png?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/07/2017-04-07-Audio/"/>
+
+
+
+
+
+  <title>音频初见 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/07/2017-04-07-Audio/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">音频初见</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-07T00:00:00+08:00">
+                2017-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="音频初见"><a href="#音频初见" class="headerlink" title="音频初见"></a>音频初见</h1><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>音频: 从形式上分为<br>短音频(音效播放):不需要进度|循环等控制  AudioToolbox.framework<br>(C语言框架 </p>
+<ul>
+<li>本质:将音频注册到system sound service(简单底层的声音播放服务))<br>特点:</li>
+<li>播放时间不超过30s</li>
+<li>数据格式PCM/IMA4</li>
+<li>音频文件必须打包成.caf,.aif,.wav,(.MP3也可以)</li>
+</ul>
+<p>长音频(音乐播放) </p>
+<ul>
+<li>较大的音频文件,需要进行精确的控制的场景     </li>
+<li>AVFoundation.framework</li>
+<li>支持的音频格式有:AAC,ALAC,HE-AAC,iLBC,IMA4,MP3等.</li>
+</ul>
+<h3 id="音效播放"><a href="#音效播放" class="headerlink" title="音效播放"></a>音效播放</h3><p>步骤:</p>
+<ul>
+<li>不要忘记导入头文件: #import \&lt;AudioToolbox/AudioToolbox.h></li>
+<li>1.调用AudioServicesCreateSystemSoundID(CFURLRef  inFileURL, SystemSoundID*   outSystemSoundID)函数获得系统声音ID。</li>
+<li>2.如果需要监听播放完成操作，则使用AudioServicesAddSystemSoundCompletion(  SystemSoundID inSystemSoundID,CFRunLoopRef  inRunLoop, CFStringRef  inRunLoopMode, AudioServicesSystemSoundCompletionProc  inCompletionRoutine, void*  inClientData)方法注册回调函数。</li>
+<li>3.调用AudioServicesPlaySystemSound(SystemSoundID inSystemSoundID)<br>  AudioServicesPlayAlertSound(SystemSoundID inSystemSoundID) 方法播放音效（后者带有震动效果）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">- (void)audioBox&#123;</span><br><span class="line"></span><br><span class="line">//获取资源路径</span><br><span class="line">NSString *pathSource = [[NSBundle mainBundle]pathForResource:@&quot;audiobox&quot; ofType:@&quot;.caf&quot;];</span><br><span class="line">NSURL *sourceUrl = [NSURL fileURLWithPath:pathSource];</span><br><span class="line"></span><br><span class="line">//系统声音id</span><br><span class="line">SystemSoundID soundID =  0;</span><br><span class="line">/**</span><br><span class="line">注册音效服务</span><br><span class="line"></span><br><span class="line">@param inFileURL#&gt; 音频文件URL 需要桥接-&gt;C语言</span><br><span class="line">@param outSystemSoundID#&gt; 输出音效ID</span><br><span class="line">@return 将音效文件加入到系统音频服务中并返回一个长整型音频ID</span><br><span class="line">*/</span><br><span class="line">AudioServicesCreateSystemSoundID((__bridge CFURLRef)(sourceUrl), &amp;soundID);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">添加播放完毕回调函数</span><br><span class="line"></span><br><span class="line">@param inSystemSoundID#&gt; 音效ID</span><br><span class="line">@param inRunLoop#&gt; 添加到Runloop</span><br><span class="line">@param inRunLoopMode#&gt; RunloopMode</span><br><span class="line">@param inCompletionRoutine#&gt; 回调函数</span><br><span class="line">@param inClientData#&gt; 传递给回调函数的相关数据</span><br><span class="line">@return ..</span><br><span class="line">*/</span><br><span class="line">AudioServicesAddSystemSoundCompletion(soundID, NULL, NULL, playCompletion, NULL);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//播放</span><br><span class="line">AudioServicesPlayAlertSound(soundID); //播放音效并震动</span><br><span class="line">//    AudioServicesPlaySystemSound(soundID); //播放音效</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">回调函数</span><br><span class="line"></span><br><span class="line">@param ssID 音效id</span><br><span class="line">@param clientData 回调时传递的数据</span><br><span class="line">*/</span><br><span class="line">void playCompletion(SystemSoundID ssID, void* __nullable clientData)&#123;</span><br><span class="line">NSLog(@&quot;播放完成&quot;);</span><br><span class="line">//摧毁音效</span><br><span class="line">AudioServicesDisposeSystemSoundID(ssID);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="音乐播放-AVAudioPlayer"><a href="#音乐播放-AVAudioPlayer" class="headerlink" title="音乐播放 AVAudioPlayer"></a>音乐播放 AVAudioPlayer</h3><p>AVAudioPlayer支持多种音频格式,而且能够对进度,音量,播放速度等控制<br>头文件 #import \&lt;AVFoundation/AVFoundation.h><br>步骤:</p>
+<ul>
+<li>1.给定资源路径,或者二进制数据初始化播放器</li>
+<li>2.设置相关属性</li>
+<li>3.执行播放,更新相关UI(进度更新,歌词显示(CADislinkplay/NSTimer))</li>
+</ul>
+<h4 id="初始化方法"><a href="#初始化方法" class="headerlink" title="初始化方法"></a>初始化方法</h4><p>AVAudioPlayer可以接受本地资源路径(NSURL)/NSData类型数据(可以用来加载网络链接),但是实质上AVAudioPlayer不支持流式播放,只能播放完整的文件,使用后者加载网络链接,当播放的音频文件较大或者网络不好就需要过长的时间等待<br>每一个实例化方法返回一个AVAudioPlayer对象,每一个文件/Data对应一个AVAudioPlayer对象,传入一个NSError的指针,用于判断初始化是否成功.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (nullable instancetype)initWithContentsOfURL:(NSURL *)url error:(NSError **)outError;</span><br><span class="line">- (nullable instancetype)initWithData:(NSData *)data error:(NSError **)outError;</span><br></pre></td></tr></table></figure>
+<h4 id="播放控制相关API"><a href="#播放控制相关API" class="headerlink" title="播放控制相关API"></a>播放控制相关API</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//准备播放,分配播放所需的资源，并将其加入内部播放队列,加载音频文件到缓冲区，注意:即使在播放之前音频文件没有加载到缓冲区程序也会隐式调用此方法。</span><br><span class="line">- (BOOL)prepareToPlay;</span><br><span class="line">//播放,如果资源还没准备好,会隐式调用prepareToPlay方法,是异步的</span><br><span class="line">- (BOOL)play;</span><br><span class="line">//相对当前设备时间或指定的时间开始播放音频</span><br><span class="line">- (BOOL)playAtTime:(NSTimeInterval)time </span><br><span class="line"></span><br><span class="line">NSTimeInterval nowTime = self.audioPlayer.deviceCurrentTime;</span><br><span class="line">[self.audioPlayer playAtTime:nowTime + 2.0];</span><br><span class="line"></span><br><span class="line">//暂停播放 并且准备好继续播放</span><br><span class="line">- (void)pause;          /* pauses playback, but remains ready to play. */</span><br><span class="line">//停止播放 不再准备好继续播放,再次调用会重新开始播放</span><br><span class="line">- (void)stop;           /* stops playback. no longer ready to play. */</span><br></pre></td></tr></table></figure>
+<h4 id="属性相关"><a href="#属性相关" class="headerlink" title="属性相关"></a>属性相关</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">//获取是否正在播放</span><br><span class="line">@property(readonly, getter=isPlaying) BOOL playing;</span><br><span class="line">//获取当前音频声道数</span><br><span class="line">@property(readonly) NSUInteger numberOfChannels;</span><br><span class="line">//获取当前音频时长</span><br><span class="line">@property(readonly) NSTimeInterval duration;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//获取创建时的音频路径 跟初始化方法相关联</span><br><span class="line">@property(readonly, nullable) NSURL *url;</span><br><span class="line">//获取创建时的音频数据 跟初始化方法相关联</span><br><span class="line">@property(readonly, nullable) NSData *data;</span><br><span class="line">//声道 -1.0~0.0左声道 0.0临界值 0.0~1.0为右声道</span><br><span class="line">@property float pan</span><br><span class="line">//音量 正常范围在0.0~1.0</span><br><span class="line">@property float volume;</span><br><span class="line">- (void)setVolume:(float)volume fadeDuration:(NSTimeInterval)duration NS_AVAILABLE(10_12, 10_0); /* fade to a new volume over a duration */</span><br><span class="line"></span><br><span class="line">//是否可以改变播放速率 必须在prepareToPlay方法前调用</span><br><span class="line">@property BOOL enableRate</span><br><span class="line">//播放速率 1.0为正常速率 0.5一半 2.0双倍速播放</span><br><span class="line">@property float rate</span><br><span class="line"></span><br><span class="line">//当前播放的时间点,可以实现定点进行播放</span><br><span class="line">@property NSTimeInterval currentTime;</span><br><span class="line"></span><br><span class="line">//输出设备播放音频的时间，注意:如果播放中被暂停此时间也会继续累加</span><br><span class="line">@property(readonly) NSTimeInterval deviceCurrentTime</span><br><span class="line"></span><br><span class="line">//设置音频播放循环次数 如果为0则不循环，如果小于0则无限循环，大于0则表示循环次数</span><br><span class="line">@property NSInteger numberOfLoops;</span><br><span class="line"></span><br><span class="line">//获取音频设置字典</span><br><span class="line">@property(readonly) NSDictionary&lt;NSString *, id&gt; *settings NS_AVAILABLE(10_7, 4_0); /* returns a settings dictionary with keys as described in AVAudioSettings.h */</span><br><span class="line"></span><br><span class="line">/* returns the format of the audio data */</span><br><span class="line">@property(readonly) AVAudioFormat *format NS_AVAILABLE(10_12, 10_0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//是否开启仪表计数功能(启用音频测量) 默认为NO，一旦启用音频测量可以通过updateMeters方法更新测量值</span><br><span class="line">@property(getter=isMeteringEnabled) BOOL meteringEnabled; /* turns level metering on or off. default is off. */</span><br><span class="line"></span><br><span class="line">//更新仪表计数的值</span><br><span class="line">- (void)updateMeters; /* call to refresh meter values */</span><br><span class="line"></span><br><span class="line">//获得指定声道的分贝峰值，如果要获得分贝峰值必须在此之前调用updateMeters方法</span><br><span class="line">- (float)peakPowerForChannel:(NSUInteger)channelNumber; /* returns peak power in decibels for a given channel */</span><br><span class="line"></span><br><span class="line">//获得指定声道的分贝平均值，注意如果要获得分贝平均值必须在此之前调用updateMeters方法</span><br><span class="line">- (float)averagePowerForChannel:(NSUInteger)channelNumber; /* returns average power in decibels for a given channel */</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/* The channels property lets you assign the output to play to specific channels as described by AVAudioSession&apos;s channels property */</span><br><span class="line">/* This property is nil valued until set. */</span><br><span class="line">/* The array must have the same number of channels as returned by the numberOfChannels property. */</span><br><span class="line">//获得或设置播放声道</span><br><span class="line">@property(nonatomic, copy, nullable) NSArray&lt;AVAudioSessionChannelDescription *&gt; *channelAssignments</span><br></pre></td></tr></table></figure>
+<h4 id="代理方法"><a href="#代理方法" class="headerlink" title="代理方法"></a>代理方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--音频播放结束后调用的函数 被中断停止播放并不会被调用--&gt; </span><br><span class="line">- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--播放遇到错误时调用的函数--&gt;</span><br><span class="line">- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError * __nullable)error;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">音乐播放器被打断</span><br><span class="line"></span><br><span class="line">@param player .</span><br><span class="line">*/</span><br><span class="line">-(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player&#123;</span><br><span class="line">NSLog(@&quot;播放被中断&quot;);</span><br><span class="line">//如果音频被中断，比如有电话呼入，该方法就会被回调，该方法可以保存当前播放信息，以便恢复继续播放的进度</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line">*  音乐播放器停止打断</span><br><span class="line">*</span><br><span class="line">*  @param player .</span><br><span class="line">*/</span><br><span class="line">-(void)audioPlayerEndInterruption:(AVAudioPlayer *)player</span><br><span class="line">&#123;</span><br><span class="line">NSLog(@&quot;audioPlayerEndInterruption-停止打断&quot;);</span><br><span class="line">[player play];</span><br><span class="line">//继续播放</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后台播放"><a href="#后台播放" class="headerlink" title="后台播放"></a>后台播放</h3><p>1.需要添加info.plist<br><img src="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2017-04-07-Audio/1.png?raw=true" alt="1" title="1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;UIBackgroundModes&lt;/key&gt;</span><br><span class="line">&lt;array&gt;</span><br><span class="line">&lt;string&gt;audio&lt;/string&gt;</span><br><span class="line">&lt;/array&gt;</span><br></pre></td></tr></table></figure>
+<p>或者<br><img src="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2017-04-07-Audio/2.png?raw=true" alt="2" title="2"><br>2.添加代码支持<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//设置锁屏仍能继续播放</span><br><span class="line">[[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:nil];</span><br><span class="line">[[AVAudioSession sharedInstance] setActive: YES error: nil];</span><br></pre></td></tr></table></figure></p>
+<h3 id="监听耳机事件"><a href="#监听耳机事件" class="headerlink" title="监听耳机事件"></a>监听耳机事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//添加通知，拔出耳机后暂停播放</span><br><span class="line">[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(routeChange:) name:AVAudioSessionRouteChangeNotification object:nil];</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  一旦输出改变则执行此方法</span><br><span class="line">*</span><br><span class="line">*  @param notification 输出改变通知对象</span><br><span class="line">*/</span><br><span class="line">-(void)routeChange:(NSNotification *)notification&#123;</span><br><span class="line"></span><br><span class="line">NSDictionary *dic=notification.userInfo;</span><br><span class="line">int changeReason= [dic[AVAudioSessionRouteChangeReasonKey] intValue];</span><br><span class="line"></span><br><span class="line">//等于AVAudioSessionRouteChangeReasonOldDeviceUnavailable表示旧输出不可用</span><br><span class="line">if (changeReason==AVAudioSessionRouteChangeReasonOldDeviceUnavailable) &#123;</span><br><span class="line">AVAudioSessionRouteDescription *routeDescription=dic[AVAudioSessionRouteChangePreviousRouteKey];</span><br><span class="line">AVAudioSessionPortDescription *portDescription= [routeDescription.outputs firstObject];</span><br><span class="line">//原设备为耳机则暂停</span><br><span class="line">if ([portDescription.portType isEqualToString:@&quot;Headphones&quot;]) &#123;</span><br><span class="line">         [self.audioPlayer pause];</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后台播放信息显示"><a href="#后台播放信息显示" class="headerlink" title="后台播放信息显示"></a>后台播放信息显示</h3><p>1.导入框架 #import \&lt;MediaPlayer/MediaPlayer.h><br>2.添加代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];</span><br><span class="line">//设置歌曲题目</span><br><span class="line">[dict setObject:@&quot;题目&quot; forKey:MPMediaItemPropertyTitle];</span><br><span class="line">//设置歌手名</span><br><span class="line">[dict setObject:@&quot;歌手&quot; forKey:MPMediaItemPropertyArtist];</span><br><span class="line">//设置专辑名</span><br><span class="line">[dict setObject:@&quot;专辑&quot; forKey:MPMediaItemPropertyAlbumTitle];</span><br><span class="line">//设置显示的图片</span><br><span class="line">UIImage *newImage = [UIImage imageNamed:@&quot;43.png&quot;];</span><br><span class="line">[dict setObject:[[MPMediaItemArtwork alloc] initWithImage:newImage]</span><br><span class="line">forKey:MPMediaItemPropertyArtwork];</span><br><span class="line">//设置歌曲时长</span><br><span class="line">[dict setObject:[NSNumber numberWithDouble:300] forKey:MPMediaItemPropertyPlaybackDuration];</span><br><span class="line">//设置已经播放时长</span><br><span class="line">[dict setObject:[NSNumber numberWithDouble:150] forKey:MPNowPlayingInfoPropertyElapsedPlaybackTime]; </span><br><span class="line">//更新字典</span><br><span class="line">[[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dict];</span><br></pre></td></tr></table></figure></p>
+<p>注:实现后台播放显示歌词的方法实现思路:将歌词信息,绘制到专辑图片上进行显示</p>
+<h3 id="后台播放远程控制"><a href="#后台播放远程控制" class="headerlink" title="后台播放远程控制"></a>后台播放远程控制</h3><p>1.注册接受远程控制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidAppear:(BOOL)animated &#123;</span><br><span class="line">//    接受远程控制</span><br><span class="line">[self becomeFirstResponder];</span><br><span class="line">[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewDidDisappear:(BOOL)animated &#123;</span><br><span class="line">//    取消远程控制</span><br><span class="line">[self resignFirstResponder];</span><br><span class="line">[[UIApplication sharedApplication] endReceivingRemoteControlEvents];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.实现监听方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">- (void)remoteControlReceivedWithEvent:(UIEvent *)event &#123;</span><br><span class="line">if (event.type == UIEventTypeRemoteControl) &#123;</span><br><span class="line">//判断是否为远程控制</span><br><span class="line">switch (event.subtype) &#123;</span><br><span class="line">//播放</span><br><span class="line">case  UIEventSubtypeRemoteControlPlay:</span><br><span class="line">if (![self.audioPlayer isPlaying]) &#123;</span><br><span class="line">[self.audioPlayer play];</span><br><span class="line">&#125;</span><br><span class="line">break;</span><br><span class="line">case UIEventSubtypeRemoteControlPause:</span><br><span class="line">//暂停</span><br><span class="line">if ([self.audioPlayer isPlaying]) &#123;</span><br><span class="line">[self.audioPlayer pause];</span><br><span class="line">&#125;</span><br><span class="line">break;</span><br><span class="line">case UIEventSubtypeRemoteControlNextTrack:</span><br><span class="line">NSLog(@&quot;下一首&quot;);</span><br><span class="line">break;</span><br><span class="line">case UIEventSubtypeRemoteControlPreviousTrack:</span><br><span class="line">NSLog(@&quot;上一首 &quot;);</span><br><span class="line">break;</span><br><span class="line">default:</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注:<br>event是事件类型对象,type是事件类型枚举<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, UIEventType) &#123;</span><br><span class="line">UIEventTypeTouches, //触摸事件</span><br><span class="line">UIEventTypeMotion,  //运动事件</span><br><span class="line">UIEventTypeRemoteControl, // 远程控制事件</span><br><span class="line">UIEventTypePresses NS_ENUM_AVAILABLE_IOS(9_0),//物理按钮事件类型</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>subtype中的枚举便是点击这些控制键后传递给我们的消息，我们可以根据这些消息在app内做逻辑处理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, UIEventSubtype) &#123;</span><br><span class="line">// available in iPhone OS 3.0</span><br><span class="line">UIEventSubtypeNone                              = 0,</span><br><span class="line">// for UIEventTypeMotion, available in iPhone OS 3.0</span><br><span class="line">//摇晃</span><br><span class="line">UIEventSubtypeMotionShake                       = 1,</span><br><span class="line">//UIEventTypeRemoteControl相关的枚举信息</span><br><span class="line">// for UIEventTypeRemoteControl, available in iOS 4.0</span><br><span class="line">//点击播放按钮或者耳机线控中间那个按钮</span><br><span class="line">UIEventSubtypeRemoteControlPlay                 = 100,</span><br><span class="line">//点击暂停按钮</span><br><span class="line">UIEventSubtypeRemoteControlPause                = 101,</span><br><span class="line">//点击停止按钮</span><br><span class="line">UIEventSubtypeRemoteControlStop                 = 102,</span><br><span class="line">//点击播放与暂停开关按钮(iphone抽屉中使用这个)</span><br><span class="line">UIEventSubtypeRemoteControlTogglePlayPause      = 103,</span><br><span class="line">//点击下一曲按钮或者耳机中间按钮两下</span><br><span class="line">UIEventSubtypeRemoteControlNextTrack            = 104,</span><br><span class="line">//点击上一曲按钮或者耳机中间按钮三下</span><br><span class="line">UIEventSubtypeRemoteControlPreviousTrack        = 105,</span><br><span class="line">//快退开始 点击耳机中间按钮三下不放开</span><br><span class="line">UIEventSubtypeRemoteControlBeginSeekingBackward = 106,</span><br><span class="line">//快退结束 耳机快退控制松开后</span><br><span class="line">UIEventSubtypeRemoteControlEndSeekingBackward   = 107,</span><br><span class="line">//开始快进 耳机中间按钮两下不放开</span><br><span class="line">UIEventSubtypeRemoteControlBeginSeekingForward  = 108,</span><br><span class="line">//快进结束 耳机快进操作松开后</span><br><span class="line">UIEventSubtypeRemoteControlEndSeekingForward    = 109,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="拓展-后台播放远程控制的相关自定义"><a href="#拓展-后台播放远程控制的相关自定义" class="headerlink" title="拓展:后台播放远程控制的相关自定义"></a>拓展:后台播放远程控制的相关自定义</h3><p>MPRemoteCommandCenter属于\&lt;MediaPlayer/MediaPlayer.h>框架,是一个单例类,处理远程控制中心事件<br>可以自定义你的控制中心,锁屏时控制,siri语音控制.它管理一系列命令Playback Commands,Feedback Command,Previous/Next Track Commands),Skip Interval Commands,Seek Command等<br>MPRemoteCommand是这些所有命令的父类<br>下面简单介绍:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//是否开启命令</span><br><span class="line">@property (nonatomic, assign, getter = isEnabled) BOOL enabled;</span><br><span class="line"></span><br><span class="line">//Target-action 添加事件处理</span><br><span class="line">- (void)addTarget:(id)target action:(SEL)action;</span><br><span class="line">//当属性enable = NO时,移除</span><br><span class="line">- (void)removeTarget:(id)target action:(nullable SEL)action;</span><br><span class="line">- (void)removeTarget:(nullable id)target;</span><br><span class="line"></span><br><span class="line">//返回一个事件对象 MPRemoteCommandEvent是一个命令事件的父类,对应不同的命令进行了继承扩展,主要添加一些属性,比如拖拽音乐进度的positionTime</span><br><span class="line">- (id)addTargetWithHandler:(MPRemoteCommandHandlerStatus(^)(MPRemoteCommandEvent *event))handler;</span><br></pre></td></tr></table></figure></p>
+<p>远程控制三部曲</p>
+<p>1:监听远程控制事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)beginReceivingRemoteControlEvents</span><br></pre></td></tr></table></figure></p>
+<p>2:捕获远程控制事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)remoteControlReceivedWithEvent:(UIEvent *)event</span><br></pre></td></tr></table></figure></p>
+<p>3.取消远程控制事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)endReceivingRemoteControlEvents</span><br></pre></td></tr></table></figure></p>
+<h4 id="网易云的锁屏实现"><a href="#网易云的锁屏实现" class="headerlink" title="网易云的锁屏实现"></a>网易云的锁屏实现</h4><p>注:添加的RemoteComand必须设置Enable为YES,并添加Target才会显示,并且添加相同类型RemoteComand,有优先级的选择显示,更改原有默认显示的上一曲,播放/暂停,下一曲会失效,需要重新添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">MPRemoteCommandCenter *rcc = [MPRemoteCommandCenter sharedCommandCenter];</span><br><span class="line"></span><br><span class="line">//feedBack</span><br><span class="line">[rcc.likeCommand setEnabled:YES];</span><br><span class="line">//使用block</span><br><span class="line">[rcc.likeCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) &#123;</span><br><span class="line">NSLog(@&quot;like!&quot;);</span><br><span class="line">return MPRemoteCommandHandlerStatusSuccess;</span><br><span class="line">&#125;];</span><br><span class="line">rcc.likeCommand.localizedTitle = @&quot;喜欢&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[rcc.dislikeCommand setEnabled:YES];</span><br><span class="line">//使用target-action 不喜欢</span><br><span class="line">[rcc.dislikeCommand addTarget:self action:@selector(previousCommandAction)];</span><br><span class="line">rcc.dislikeCommand.localizedTitle = @&quot;上一首&quot;;</span><br><span class="line">[rcc.bookmarkCommand setEnabled:YES];</span><br><span class="line">//取消Action</span><br><span class="line">//    [rcc.dislikeCommand removeTarget:self action:@selector(previousCommandAction)];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//书签</span><br><span class="line">[rcc.bookmarkCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) &#123;</span><br><span class="line">NSLog(@&quot;bookmark&quot;);</span><br><span class="line">return MPRemoteCommandHandlerStatusSuccess;</span><br><span class="line">&#125;];</span><br><span class="line">rcc.bookmarkCommand.localizedTitle = @&quot;收藏&quot;;</span><br></pre></td></tr></table></figure>
+<p>效果图:<br><img src="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2017-04-07-Audio/3.jpg?raw=true" alt="3" title="3"></p>
+<h4 id="锁屏控制播放进度"><a href="#锁屏控制播放进度" class="headerlink" title="锁屏控制播放进度"></a>锁屏控制播放进度</h4><p>主要使用:MPChangePlaybackPositionCommand<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//改变音乐播放进度</span><br><span class="line">MPChangePlaybackPositionCommand *changePlayBackPosition = [rcc changePlaybackPositionCommand];</span><br><span class="line">[changePlayBackPosition setEnabled:YES];</span><br><span class="line">[changePlayBackPosition addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) &#123;</span><br><span class="line">MPChangePlaybackPositionCommandEvent *events = (MPChangePlaybackPositionCommandEvent *)event;</span><br><span class="line">self.audioPlayer.currentTime = events.positionTime;</span><br><span class="line">return MPRemoteCommandHandlerStatusSuccess;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<h3 id="流式音频播放-播放网络音频"><a href="#流式音频播放-播放网络音频" class="headerlink" title="流式音频播放(播放网络音频)"></a>流式音频播放(播放网络音频)</h3><p>使用AudioToolbox框架中的音频队列服务Audio Queue Services。<br>第三方框架:FreeStreamer</p>
+<p>#import “FSAudioStream.h”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//初始化</span><br><span class="line">FSAudioStream *player = [[FSAudioStream alloc]initWithUrl:[self getFileUrl]];</span><br><span class="line">player.onFailure = ^(FSAudioStreamError error, NSString *errorDescription) &#123;</span><br><span class="line">NSLog(@&quot;播放错误error:%@&quot;,errorDescription);</span><br><span class="line">&#125;;</span><br><span class="line">player.onCompletion = ^&#123;</span><br><span class="line">NSLog(@&quot;播放完成&quot;);</span><br><span class="line">&#125;;</span><br><span class="line">//设置音量</span><br><span class="line">[player setVolume:0.5];</span><br><span class="line">//播放</span><br><span class="line">[player play];</span><br><span class="line"></span><br><span class="line">//添加引用</span><br><span class="line">self.audioStream = player;</span><br></pre></td></tr></table></figure></p>
+<p>豆瓣:DOUAudioStreamer<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;DOUAudioStreamer.h&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@interface AudioModel : NSObject&lt;DOUAudioFile&gt;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) NSURL *audioFileURL;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation AudioModel</span><br><span class="line"></span><br><span class="line">- (NSURL *)audioFileURL&#123;</span><br><span class="line">NSString *urlStr= @&quot;http://sc1.111ttt.com/2017/1/03/07/296072048390.mp3&quot;;</span><br><span class="line">NSURL *url=[NSURL URLWithString:urlStr];</span><br><span class="line">self.audioFileURL = url;</span><br><span class="line">return url;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">AudioModel *file = [[AudioModel alloc]init];</span><br><span class="line">[file audioFileURL];</span><br><span class="line">self.stream = [[DOUAudioStreamer alloc]initWithAudioFile:file];</span><br><span class="line">[self.stream play];</span><br></pre></td></tr></table></figure></p>
+<p>参考:<br><a href="https://developer.apple.com/library/content/samplecode/MPRemoteCommandSample/Introduction/Intro.html" target="_blank" rel="noopener">https://developer.apple.com/library/content/samplecode/MPRemoteCommandSample/Introduction/Intro.html</a> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/04/2017-04-04-Xcode/" rel="next" title="菜鸟Xcode起航">
+                <i class="fa fa-chevron-left"></i> 菜鸟Xcode起航
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/06/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#音频初见"><span class="nav-number">1.</span> <span class="nav-text">音频初见</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本介绍"><span class="nav-number">1.0.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#音效播放"><span class="nav-number">1.0.2.</span> <span class="nav-text">音效播放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#音乐播放-AVAudioPlayer"><span class="nav-number">1.0.3.</span> <span class="nav-text">音乐播放 AVAudioPlayer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化方法"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">初始化方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#播放控制相关API"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">播放控制相关API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性相关"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">属性相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理方法"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">代理方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台播放"><span class="nav-number">1.0.4.</span> <span class="nav-text">后台播放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监听耳机事件"><span class="nav-number">1.0.5.</span> <span class="nav-text">监听耳机事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台播放信息显示"><span class="nav-number">1.0.6.</span> <span class="nav-text">后台播放信息显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台播放远程控制"><span class="nav-number">1.0.7.</span> <span class="nav-text">后台播放远程控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓展-后台播放远程控制的相关自定义"><span class="nav-number">1.0.8.</span> <span class="nav-text">拓展:后台播放远程控制的相关自定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网易云的锁屏实现"><span class="nav-number">1.0.8.1.</span> <span class="nav-text">网易云的锁屏实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁屏控制播放进度"><span class="nav-number">1.0.8.2.</span> <span class="nav-text">锁屏控制播放进度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流式音频播放-播放网络音频"><span class="nav-number">1.0.9.</span> <span class="nav-text">流式音频播放(播放网络音频)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="##KVC与KVO ###KVC(key-value-coding)键值编码用来给一个对象的属性进行赋值或者访问.通过类别的方式添加@interface NSObject(NSKeyValueCoding) 使用:  (void)setValue:(nullable id)value forKey:(NSString *)key; (void)setValue:(nullable id)value">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/04/06/hello-world/index.html">
+<meta property="og:title" content="KVC与KVO">
+<meta property="og:url" content="http://yoursite.com/2016/02/07/2016-2-07  KVC与KVO/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="##KVC与KVO ###KVC(key-value-coding)键值编码用来给一个对象的属性进行赋值或者访问.通过类别的方式添加@interface NSObject(NSKeyValueCoding) 使用:  (void)setValue:(nullable id)value forKey:(NSString *)key; (void)setValue:(nullable id)value">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-06T11:34:17.934Z">
+<meta property="og:updated_time" content="2017-10-07T17:27:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="KVC与KVO">
+<meta name="twitter:description" content="##KVC与KVO ###KVC(key-value-coding)键值编码用来给一个对象的属性进行赋值或者访问.通过类别的方式添加@interface NSObject(NSKeyValueCoding) 使用:  (void)setValue:(nullable id)value forKey:(NSString *)key; (void)setValue:(nullable id)value">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/06/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/02/07/2016-2-07  KVC与KVO/"/>
 
 
 
 
 
-  <title>Hello World | Hexo</title>
+  <title>KVC与KVO | Hexo</title>
   
 
 
@@ -232,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/06/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/07/2016-2-07  KVC与KVO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">KVC与KVO</h1>
         
 
         <div class="post-meta">
@@ -261,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-06T19:34:17+08:00">
-                2018-04-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-07T00:00:00+08:00">
+                2016-02-07
               </time>
             
 
@@ -299,15 +300,50 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>##KVC与KVO</p>
+<p>###KVC(key-value-coding)键值编码<br>用来给一个对象的属性进行赋值或者访问.<br>通过类别的方式添加<br>@interface NSObject(NSKeyValueCoding)</p>
+<p>使用:</p>
+<ul>
+<li>(void)setValue:(nullable id)value forKey:(NSString *)key;<ul>
+<li>(void)setValue:(nullable id)value forKeyPath:(NSString *)keyPath;<br>第二个方法通过路径的方式的访问,即可以访问成员变量是对象的属性 “Dog.age”</li>
+</ul>
+</li>
+</ul>
+<p>应用:</p>
+<ol>
+<li>系统Storyboard控件拖线</li>
+<li>访问私有成员变量</li>
+<li>字典转模型</li>
+</ol>
+<p>字典转模型(属性名相同,不能是关键字,嵌套对象模型时还需另做处理,一般使用第三方)</p>
+<ul>
+<li>(void)setValuesForKeysWithDictionary:(NSDictionary<nsstring *,="" id=""> *)keyedValues;<br>遇到不能识别的key执行的方法</nsstring></li>
+<li>(void)setValue:(nullable id)value forUndefinedKey:(NSString *)key;</li>
+</ul>
+<p>原理:</p>
+<p>###KVO(key-value-observing)键值监听<br>利用一个key来找到某个属性并监听其值的改变。典型的观察者模式<br>类别:@interface NSObject(NSKeyValueObserving)</p>
+<p>使用:</p>
+<ol>
+<li>添加监听</li>
+<li>实现监听方法，observeValueForKeyPath: ofObject: change: context:</li>
+<li>移除监听</li>
+</ol>
+<p>相关API</p>
+<ul>
+<li>(void)addObserver:(NSObject <em>)observer forKeyPath:(NSString </em>)keyPath options:(NSKeyValueObservingOptions)options context:(nullable void *)context;//添加监听</li>
+<li>(void)removeObserver:(NSObject <em>)observer forKeyPath:(NSString </em>)keyPath context:(nullable void *)context API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0));//删除监听</li>
+<li>(void)removeObserver:(NSObject <em>)observer forKeyPath:(NSString </em>)keyPath;//删除监听</li>
+<li>(void)observeValueForKeyPath:(nullable NSString <em>)keyPath ofObject:(nullable id)object change:(nullable NSDictionary&lt;NSKeyValueChangeKey, id&gt; </em>)change context:(nullable void *)context;//监听实现方法</li>
+</ul>
+<p>####手动实现KVO<br>重写该方法,对应的key但会NO</p>
+<ul>
+<li>(BOOL)automaticallyNotifiesObserversForKey:(NSString *)key;<br>调用方法完成当值改变时发出通知</li>
+</ul>
+<ul>
+<li>(void)willChangeValueForKey:(NSString *)key;</li>
+<li>(void)didChangeValueForKey:(NSString *)key;</li>
+</ul>
+<p>###KVO的实现原理<br>当一个类的属性被观察的时候，系统会通过runtime动态的创建一个该类的派生类，并且会在这个类中重写基类被观察的属性的setter方法，而且系统将这个类的isa指针指向了派生类，从而实现了给监听的属性赋值时调用的是派生类的setter方法。重写的setter方法会在调用原setter方法前后，通知观察对象值得改变。</p>
 
       
     </div>
@@ -323,6 +359,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
 
       
       
@@ -332,8 +374,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/07/2017-04-07-Audio/" rel="next" title="音频初见">
-                <i class="fa fa-chevron-left"></i> 音频初见
+              <a href="/2015/06/22/2015-06-22-iOS 9 新特性/" rel="next" title="iOS 9 新特性">
+                <i class="fa fa-chevron-left"></i> iOS 9 新特性
               </a>
             
           </div>
@@ -341,6 +383,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/09/2016-2-09 Block的理解/" rel="prev" title="Block">
+                Block <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -392,17 +438,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -453,22 +490,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
