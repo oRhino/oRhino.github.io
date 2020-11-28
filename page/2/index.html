@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Objective-C," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,22 +79,16 @@
 
 
 
-<meta name="description" content="属性1.宏NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull 例子:12345678NS_ASSUME_NONNULL_BEGIN@interface Property : NSObject@property (nonatomic, copy) NSString *name;@property (nonatomic, as">
-<meta name="keywords" content="Objective-C">
-<meta property="og:type" content="article">
-<meta property="og:title" content="iOS 9 新特性">
-<meta property="og:url" content="http://yoursite.com/2015/06/22/2015-06-22-iOS 9 新特性/index.html">
+<meta name="description" content="I have a dream! change the world~">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rhino">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Rhino">
-<meta property="og:description" content="属性1.宏NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull 例子:12345678NS_ASSUME_NONNULL_BEGIN@interface Property : NSObject@property (nonatomic, copy) NSString *name;@property (nonatomic, as">
+<meta property="og:description" content="I have a dream! change the world~">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/1.png?raw=true">
-<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/2.png?raw=true">
-<meta property="og:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/3.jpg?raw=true">
-<meta property="og:updated_time" content="2017-10-07T17:27:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS 9 新特性">
-<meta name="twitter:description" content="属性1.宏NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull 例子:12345678NS_ASSUME_NONNULL_BEGIN@interface Property : NSObject@property (nonatomic, copy) NSString *name;@property (nonatomic, as">
-<meta name="twitter:image" content="https://github.com/oRhino/oRhino.github.io/blob/master/images/posts/2015-06-22/1.png?raw=true">
+<meta name="twitter:title" content="Rhino">
+<meta name="twitter:description" content="I have a dream! change the world~">
 
 
 
@@ -124,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/06/22/2015-06-22-iOS 9 新特性/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
 
 
-  <title>iOS 9 新特性 | Rhino</title>
+  <title>Rhino</title>
   
 
 
@@ -149,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -222,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -254,7 +249,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS 9 新特性</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/06/22/2015-06-22-iOS 9 新特性/" itemprop="url">iOS 9 新特性</a></h1>
         
 
         <div class="post-meta">
@@ -304,7 +301,9 @@
       
 
       
-        <h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="1-宏"><a href="#1-宏" class="headerlink" title="1.宏"></a>1.宏</h3><p>NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull</p>
+        
+          
+            <h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="1-宏"><a href="#1-宏" class="headerlink" title="1.宏"></a>1.宏</h3><p>NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END之间的所有属性默认都是nonnull</p>
 <p>例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">NS_ASSUME_NONNULL_BEGIN</span><br><span class="line">@interface Property : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@property (nonatomic, assign) NSUInteger age;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line">NS_ASSUME_NONNULL_END</span><br></pre></td></tr></table></figure></p>
 <h3 id="2-属性修饰符"><a href="#2-属性修饰符" class="headerlink" title="2.属性修饰符"></a>2.属性修饰符</h3><h4 id="2-1-nonnull-nonnull"><a href="#2-1-nonnull-nonnull" class="headerlink" title="2.1 nonnull \ __nonnull"></a>2.1 nonnull \ __nonnull</h4><p>nonnull \ __nonnull : setter 和 getter 都不能为nil</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, strong, nonnull) NSArray *names;</span><br><span class="line">@property (nonatomic, strong) NSArray * __nonnull name;</span><br></pre></td></tr></table></figure>
@@ -321,6 +320,8 @@
 <h2 id="5-kindof"><a href="#5-kindof" class="headerlink" title="5.__kindof"></a>5.__kindof</h2><p>例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (nullable __kindof UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath; </span><br><span class="line">- (nullable __kindof UIView *)viewWithTag:(NSInteger)tag;</span><br></pre></td></tr></table></figure></p>
 <p>意思是返回的类型是UITableViewCell或者它的子类均可,相对于id类型,可以减少我们进行再次强转</p>
 
+          
+        
       
     </div>
     
@@ -335,36 +336,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/07/2016-2-07  KVC与KVO/" rel="prev" title="KVC与KVO">
-                KVC与KVO <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -374,11 +353,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -386,10 +368,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -410,17 +388,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -471,22 +440,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-宏"><span class="nav-number">1.1.</span> <span class="nav-text">1.宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-属性修饰符"><span class="nav-number">1.2.</span> <span class="nav-text">2.属性修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-nonnull-nonnull"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 nonnull \ __nonnull</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-nullable-nullable"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 nullable \ __nullable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-null-resettable"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3  null_resettable</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-泛型"><span class="nav-number">2.</span> <span class="nav-text">3. 泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-自定义泛型时使用"><span class="nav-number">3.</span> <span class="nav-text">4.自定义泛型时使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-kindof"><span class="nav-number">4.</span> <span class="nav-text">5.__kindof</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -627,10 +580,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
